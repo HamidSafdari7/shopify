@@ -67,7 +67,7 @@ const ManageOrders = () => {
                                 </td>
                                 <td className='py-3 px-4 border-b'>{formatDate(order?.updatedAt)}</td>
                                 <td className='py-3 px-4 border-b flex items-center space-x-4'>
-                                    <Link to={`/orders/${order?.orderI}`} className="text-blue-500 hover:underline">View</Link>
+                                    <Link to={`/orders/${order?.orderId}`} className="text-blue-500 hover:underline">View</Link>
                                     <button className="text-green-500 hover:underline" onClick={() => handleEditOrder(order)}>Edit</button>
                                     <button className="text-red-500 hover:underline" onClick={() => handleDeleteOder(order?._id)}>Delete</button>
                                 </td>
