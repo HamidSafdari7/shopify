@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import RatingStars from '../../components/RatingStars'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/features/cart/cartSlice';
+import { enqueueSnackbar } from 'notistack';
 
 const ProductCards = ({ products }) => {
 
