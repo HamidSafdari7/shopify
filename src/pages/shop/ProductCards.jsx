@@ -1,15 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import RatingStars from '../../components/RatingStars'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../redux/features/cart/cartSlice';
 
 const ProductCards = ({ products }) => {
 
     const dispatch = useDispatch();
+    const { user } = useSelector((store) => store.auth);
 
     const handleAddToCart = (product) => {
-        dispatch(addToCart(product))
+        if (user) {
+
+            dispatch(addToCart(product))
+        } else {
+            enqueueSnackbar("You must login first", {
+                variant: "error",
+            });
+        }
     }
 
     return (

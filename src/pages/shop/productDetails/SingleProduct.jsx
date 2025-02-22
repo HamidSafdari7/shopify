@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import RatingStars from '../../../components/RatingStars';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useFetchProductByIdQuery } from '../../../redux/features/products/productsApi';
 import { enqueueSnackbar } from "notistack";
 import Loading from '../../../components/Loading';
@@ -14,6 +14,7 @@ const SingleProduct = () => {
     const { id } = useParams();
 
     const dispatch = useDispatch();
+    const { user } = useSelector((store) => store.auth);
 
     const { data, error, isLoading } = useFetchProductByIdQuery(id);
 
@@ -21,7 +22,14 @@ const SingleProduct = () => {
     const productReviews = data?.reviews || [];
 
     const handleAddToCart = (product) => {
-        dispatch(addToCart(product))
+        if (user) {
+
+            dispatch(addToCart(product))
+        } else {
+            enqueueSnackbar("You must login first", {
+                variant: "error",
+            });
+        }
     }
 
     if (error) return enqueueSnackbar(error.data.message, { variant: "error", });
