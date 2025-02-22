@@ -1,3 +1,3 @@
 export const getBaseUrl = () => {
-    return "https://shopify-backend-plum.vercel.app"
+    return "https://shopify-backend-jo3l.onrender.com"
 }
